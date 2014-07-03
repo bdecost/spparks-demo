@@ -1,0 +1,7 @@
+#+TITLE: SPPARKS Demo
+#+AUTHOR: Brian DeCost
+#+DATE: 11 July 2014
+
+* An overview of SPPARKS
+
+* Demo: Normal grain growth

@@ -1,7 +1,58 @@
-#+TITLE: SPPARKS Demo
-#+AUTHOR: Brian DeCost
+#+TITLE: SPPARKS for microstructural science
+#+AUTHOR: Brian DeCost and Liz Holm
+#+EMAIL: bdecost@andrew.cmu.edu
 #+DATE: 11 July 2014
+#+OPTIONS: H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [mathserif]
+#+BEAMER_FRAME_LEVEL: 2
+#+latex_header: \mode<beamer>{\usetheme{Berkeley}}
+#+latex_header: \mode<beamer>{\usecolortheme{seahorse}}
+#+latex_header: \setbeamertemplate{navigation symbols}{}
+#+latex_header: \setbeamertemplate{footline}[frame number]
+#+latex_header: \setbeamertemplate{blocks}[rounded] 
+#+latex_header: \usepackage{enumitem}
+#+latex_header: \setitemize{itemsep=1ex,leftmargin=1cm,labelindent=\parindent,label=$\triangleright$} 
+#+latex_header: \setbeamerfont{title}{family=\rm}
+#+latex_header: \setbeamerfont{author}{family=\rm}
+#+latex_header: \setbeamerfont{date}{family=\rm}
+#+latex_header: \setbeamerfont{frametitle}{family=\rm}
+#+BEAMER_HEADER_EXTRA: \title[SPPARKS]{SPPARKS for microstructural science}
+#+BEAMER_HEADER_EXTRA: \author[]{Brian DeCost and Liz Holm}
 
-* An overview of SPPARKS
+* Introduction to =SPPARKS=
+** What is ~SPPARKS~?
+** What can ~SPPARKS~ do?
+** What applications is ~SPPARKS~ useful for?
+*** In this session, we'll focus on the Potts model		    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+- Generation of simple synthetic microstructures
+- Annealing synthetic microstructures to achieve local equilibrium along triple lines
+- Modeling grain growth, recrystallization, and related phenomena
+
+* Using =SPPARKS=
+** Making and running ~SPPARKS~
+~SPPARKS~ is written in ~C++~ and is distributed with several makefiles, found in ~spparks/src/MAKE/~. You will likely have to edit ~Makefile.linux~, ~Makefile.g++~, or ~Makefile.mac~ to reflect your system to get ~SPPARKS~ to compile.
+
+*** Building ~SPPARKS~						    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+#+BEGIN_SRC shell
+mkdir -p ~/Software && cd ~/Software
+tar xvzf ~/Downloads/spparks.tar.gz
+cd spparks-19Nov13/src
+make -j8 linux
+#+END_SRC
+
+** Input scripts and commands
+
+** Initializing 
 
 * Demo: Normal grain growth
+** Normal grain growth
+** Instructions

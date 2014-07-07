@@ -1,0 +1,26 @@
+# SPPARKS -- 2D grain growth example
+# Should take less than one minute executing serially
+
+seed		 42
+
+variable	 size equal 512
+variable	 nspins equal ${size}*${size}
+app_style	 potts ${nspins}
+
+dimension	 2
+lattice		 sq/8n 1.0
+region		 box block 0 ${size} 0 ${size} -0.5 0.5
+create_box	 box
+create_sites	 box
+set		 site unique
+
+
+solve_style      tree
+sector		 no
+temperature	 0.9
+
+diag_style       cluster filename cluster.dat
+stats            5.0
+dump             1 text 50.0 dump*.potts
+
+run              150.0

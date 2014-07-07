@@ -6,7 +6,7 @@
 #+OPTIONS: TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+startup: beamer
 #+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [mathserif]
+#+LaTeX_CLASS_OPTIONS: [mathserif,xcolor=dvipsnames]
 #+BEAMER_FRAME_LEVEL: 2
 #+latex_header: \mode<beamer>{\usetheme{Berkeley}}
 #+latex_header: \mode<beamer>{\usecolortheme{seahorse}}
@@ -22,23 +22,37 @@
 #+BEAMER_HEADER_EXTRA: \title[SPPARKS]{SPPARKS for microstructural science}
 #+BEAMER_HEADER_EXTRA: \author[]{Brian DeCost and Liz Holm}
 
+#+latex_header: \newcommand{\e}[1]{\textcolor{Periwinkle}{#1}}
+
 * Introduction to =SPPARKS=
-** What is ~SPPARKS~?
-** What can ~SPPARKS~ do?
+** \e{S}tochastic \e{P}arallel \e{PAR}ticle \e{K}inetic \e{S}imulator[fn:1]
+*** ~SPPARKS~ is an efficient \emph{parallel} Kinetic Monte Carlo framework :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    - Mesoscale materials phenomena as stochastic processes
+    - Scalable to thousands of processors
+    - Modular ~C++~ facilitates user-defined models/statistics
+    - Open Source (GPLv3)
+    - Related to the ~LAMMPS~ Molecular Dynamics framework
+
 ** What applications is ~SPPARKS~ useful for?
+   - lattice-based models
+   - off-lattice models
+   - generic KMC applications
 *** In this session, we'll focus on the Potts model		    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :END:
-- Generation of simple synthetic microstructures
-- Annealing synthetic microstructures to achieve local equilibrium along triple lines
 - Modeling grain growth, recrystallization, and related phenomena
+- Annealing synthetic microstructures to achieve local equilibrium along triple lines
+- Generation of simple synthetic microstructures
 
 * Using =SPPARKS=
-** Making and running ~SPPARKS~
-~SPPARKS~ is written in ~C++~ and is distributed with several makefiles, found in ~spparks/src/MAKE/~. You will likely have to edit ~Makefile.linux~, ~Makefile.g++~, or ~Makefile.mac~ to reflect your system to get ~SPPARKS~ to compile.
+** ~SPPARKS~ uses the Unix build system ~make~
+~SPPARKS~ is distributed with several makefiles, found in ~spparks/src/MAKE/~. You will likely have to edit ~Makefile.linux~, ~Makefile.g++~, or ~Makefile.mac~ to reflect your system to get ~SPPARKS~ to compile.[fn:2]
 
-*** Building ~SPPARKS~						    :B_block:
+*** Building ~SPPARKS~ (on a mac) 				    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :END:
@@ -46,13 +60,44 @@
 mkdir -p ~/Software && cd ~/Software
 tar xvzf ~/Downloads/spparks.tar.gz
 cd spparks-19Nov13/src
-make -j8 linux
+make -j8 mac
 #+END_SRC
 
+The result is an executable named ~spk_mac~ in ~src/~.
+
+** "Installing" SPPARKS[fn:3]
+\begin{block}
+{To avoid copying the ~SPPARKS~ executable or typing the full path to it repeatedly, define a \emph{shell alias}:}
+#+BEGIN_SRC shell
+alias spk='~/Software/spparks-19Nov13/src/spk_mac'
+#+END_SRC
+\end{block}
+
+\vspace{0.15\textheight}
+
+Now typing ~spk~ into the shell prompt from any working directory runs ~SPPARKS~. Try this now.
+
+
 ** Input scripts and commands
+\begin{block}{~SPPARKS~ reads commands from ~stdin~}
+\includegraphics[width=\textwidth]{spk} \\
+Press ~Ctrl-C~ to exit.
+\end{block}
+
+** Running ~SPPARKS~
+
 
 ** Initializing 
 
 * Demo: Normal grain growth
 ** Normal grain growth
 ** Instructions
+
+* Footnotes
+
+[fn:1] [[http://spparks.sandia.gov/]]
+
+[fn:2] Try =Makefile.serial= or =Makefile.mac_serial= if =MPI= is missing or causes problems.
+
+[fn:3] To make this permanent, append this command to =~/.bashrc= (=~/.bash_profile= on a mac)
+

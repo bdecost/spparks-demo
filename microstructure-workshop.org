@@ -14,7 +14,8 @@
 #+latex_header: \setbeamertemplate{footline}[frame number]
 #+latex_header: \setbeamertemplate{blocks}[rounded] 
 #+latex_header: \usepackage{enumitem}
-#+latex_header: \setitemize{itemsep=1ex,leftmargin=1cm,labelindent=\parindent,label=$\triangleright$} 
+#+latex_header: \setitemize{itemsep=1ex,leftmargin=1cm,labelindent=\parindent,label=$\triangleright$}
+#+latex_header: \graphicspath{{images/}}
 #+latex_header: \setbeamerfont{title}{family=\rm}
 #+latex_header: \setbeamerfont{author}{family=\rm}
 #+latex_header: \setbeamerfont{date}{family=\rm}
@@ -54,40 +55,47 @@
 ** Spatially decomposed parallelization
 
 * Getting started with =SPPARKS=
-** Download =SPPARKS=
+** The =SPPARKS= distribution
+Download [[http://www.sandia.gov/~sjplimp/download.html][SPPARKS]] from =http://www.sandia.gov/~sjplimp/download.html=
+\bigskip
 \begin{block}{Unpack the ~SPPARKS~ source archive}
 #+BEGIN_SRC shell
 mkdir -p ~/Software && cd ~/Software
 tar xvzf ~/Downloads/spparks.tar.gz
-cd spparks-19Nov13/src
-ls
+cd spparks*/src
+ls ~/Software/spparks*/
 #+END_SRC
 \end{block}
+\bigskip
 
-** ~SPPARKS~ uses the Unix build system ~make~
+\includegraphics[width=\textwidth]{ls-1}
+
+** =SPPARKS= uses the Unix build system =make=
 ~SPPARKS~ is distributed with several makefiles, found in ~src/MAKE/~. 
 
-\includegraphics[width=0.9\textwidth]{make-dir-1}
+\bigskip
+\includegraphics[width=\textwidth]{make-dir-1}
+\bigskip
 
 You will likely have to edit ~Makefile.linux~, ~Makefile.g++~, or ~Makefile.mac_mpi~ to reflect your system to get ~SPPARKS~ to compile.[fn:3]
 
 ** Building =SPPARKS=
-*** Building ~SPPARKS~ (on a mac) 				    :B_block:
-    :PROPERTIES:
-    :BEAMER_env: block
-    :END:
+
+Try to compile =SPPARKS= by running make with the appropriate build target for your system as an argument.
+
+\bigskip
+\begin{block}{Building SPPARKS using ~Makefile.mac\_mpi~}
 #+BEGIN_SRC shell
-mkdir -p ~/Software && cd ~/Software
-tar xvzf ~/Downloads/spparks.tar.gz
-cd spparks-19Nov13/src
 make -j4 mac_mpi
 #+END_SRC
+\end{block}
+\bigskip
 
 The result is an executable named ~spk_mac_mpi~ in ~src/~.
 
 ** Building serial ~SPPARKS~
 The ~JPEG~ library can also cause build problems which are difficult to resolve.
-~Makefile.demo~ will build a serial version of ~SPPARKS~ without ~JPEG~.
+~Makefile.demo~ will build a serial version of ~SPPARKS~ without the ~JPEG~ library.
 \begin{block}{First build the ~MPI~ stubs:}
 #+BEGIN_SRC shell
 cd STUBS
@@ -108,14 +116,13 @@ make demo
 \begin{block}
 {To avoid copying the ~SPPARKS~ executable or typing the full path to it repeatedly, define a \emph{shell alias}:}
 #+BEGIN_SRC shell
-alias spk='~/Software/spparks-19Nov13/src/spk_demo'
+alias spk='~/Software/spparks*/src/spk_demo'
 #+END_SRC
 \end{block}
 
-\vspace{0.15\textheight}
+\bigskip
 
 Now typing ~spk~ into the shell prompt from any working directory runs ~SPPARKS~. Try this now.
-
 
 ** Running ~SPPARKS~ with no input
 \begin{block}{~SPPARKS~ reads commands from ~stdin~}
@@ -123,20 +130,42 @@ Now typing ~spk~ into the shell prompt from any working directory runs ~SPPARKS~
 Press ~Ctrl-C~ to exit.
 \end{block}
 
+
+* Demo: Running =SPPARKS=
 ** Running ~SPPARKS~
 
+* Demo: Grain growth kinetics
+** Diagnostics
 
-** Initializing 
+* Demo: Visualization with ParaView
+** The =dump= command
+Post-processing. =pizza.py= or custom scripts.
+** Installing pizza.py[fn:4]
+Download and unpack the [[http://www.sandia.gov/~sjplimp/download.html][pizza.py]] archive from =http://www.sandia.gov/~sjplimp/download.html=
+\bigskip
+\begin{block}{Unpack the ~SPPARKS~ source archive}
+#+BEGIN_SRC shell
+mkdir -p ~/Software && cd ~/Software
+tar xvzf ~/Downloads/pizza.tar.gz
+cd -
+alias pizza='python -i ~/Software/pizza*/src/pizza.py'
+#+END_SRC
+\end{block}
+\bigskip
 
-* Demo: Normal grain growth
-** Normal grain growth
-** Instructions
+** Conversion to =vtk= with =pizza.py=
+
+* Demo: Running in parallel
+** =mpirun=
+** Processor partitions
 
 * Footnotes
 
 [fn:1] [[http://spparks.sandia.gov/]]
 
-[fn:2] To make this permanent, append this command to =~/.bashrc= (=~/.bash_profile= on a mac)
+[fn:2] To make this persistent, append this command to =~/.bashrc= (=~/.bash_profile= on a mac)
 
 [fn:3] You'll likely need to supply the location of the =MPI= library files on your system.
+
+[fn:4] As with =SPPARKS=, append the =alias= command to =~/.bashrc= or =~/.bash_profile= to make this "installation" persistent.
 

@@ -19,12 +19,15 @@
 #+latex_header: \setbeamerfont{author}{family=\rm}
 #+latex_header: \setbeamerfont{date}{family=\rm}
 #+latex_header: \setbeamerfont{frametitle}{family=\rm}
+# #+latex_header: \usebackgroundtemplate{\includegraphics[width=\paperwidth]{spkcode-1}}
+#+latex_header: \setbeamertemplate{background canvas}{ \begin{picture}(0,0) \put(45,-301){\includegraphics[width=\paperwidth]{spkcode-1}} \end{picture}}
 #+BEAMER_HEADER_EXTRA: \title[SPPARKS]{SPPARKS for microstructural science}
-#+BEAMER_HEADER_EXTRA: \author[]{Brian DeCost and Liz Holm}
-
+#+BEAMER_HEADER_EXTRA: \author[]{Brian DeCost}
 #+latex_header: \newcommand{\e}[1]{\textcolor{Periwinkle}{#1}}
 
+
 * Introduction to =SPPARKS=
+\setbeamertemplate{background canvas}[default] 
 ** \e{S}tochastic \e{P}arallel \e{PAR}ticle \e{K}inetic \e{S}imulator[fn:1]
 *** ~SPPARKS~ is an efficient \emph{parallel} Kinetic Monte Carlo framework :B_block:
     :PROPERTIES:
@@ -48,10 +51,27 @@
 - Annealing synthetic microstructures to achieve local equilibrium along triple lines
 - Generation of simple synthetic microstructures
 
-* Using =SPPARKS=
-** ~SPPARKS~ uses the Unix build system ~make~
-~SPPARKS~ is distributed with several makefiles, found in ~spparks/src/MAKE/~. You will likely have to edit ~Makefile.linux~, ~Makefile.g++~, or ~Makefile.mac~ to reflect your system to get ~SPPARKS~ to compile.[fn:2]
+** Spatially decomposed parallelization
 
+* Getting started with =SPPARKS=
+** Download =SPPARKS=
+\begin{block}{Unpack the ~SPPARKS~ source archive}
+#+BEGIN_SRC shell
+mkdir -p ~/Software && cd ~/Software
+tar xvzf ~/Downloads/spparks.tar.gz
+cd spparks-19Nov13/src
+ls
+#+END_SRC
+\end{block}
+
+** ~SPPARKS~ uses the Unix build system ~make~
+~SPPARKS~ is distributed with several makefiles, found in ~src/MAKE/~. 
+
+\includegraphics[width=0.9\textwidth]{make-dir-1}
+
+You will likely have to edit ~Makefile.linux~, ~Makefile.g++~, or ~Makefile.mac_mpi~ to reflect your system to get ~SPPARKS~ to compile.[fn:3]
+
+** Building =SPPARKS=
 *** Building ~SPPARKS~ (on a mac) 				    :B_block:
     :PROPERTIES:
     :BEAMER_env: block
@@ -60,16 +80,35 @@
 mkdir -p ~/Software && cd ~/Software
 tar xvzf ~/Downloads/spparks.tar.gz
 cd spparks-19Nov13/src
-make -j8 mac
+make -j4 mac_mpi
 #+END_SRC
 
-The result is an executable named ~spk_mac~ in ~src/~.
+The result is an executable named ~spk_mac_mpi~ in ~src/~.
 
-** "Installing" SPPARKS[fn:3]
+** Building serial ~SPPARKS~
+The ~JPEG~ library can also cause build problems which are difficult to resolve.
+~Makefile.demo~ will build a serial version of ~SPPARKS~ without ~JPEG~.
+\begin{block}{First build the ~MPI~ stubs:}
+#+BEGIN_SRC shell
+cd STUBS
+make
+cd ..
+#+END_SRC
+\end{block}
+
+Copy ~Makefile.demo~ into ~src/MAKE/~
+
+\begin{block}{Build the demo version of =SPPARKS=}
+#+BEGIN_SRC shell
+make demo
+#+END_SRC
+\end{block}
+
+** "Installing" SPPARKS[fn:2]
 \begin{block}
 {To avoid copying the ~SPPARKS~ executable or typing the full path to it repeatedly, define a \emph{shell alias}:}
 #+BEGIN_SRC shell
-alias spk='~/Software/spparks-19Nov13/src/spk_mac'
+alias spk='~/Software/spparks-19Nov13/src/spk_demo'
 #+END_SRC
 \end{block}
 
@@ -78,7 +117,7 @@ alias spk='~/Software/spparks-19Nov13/src/spk_mac'
 Now typing ~spk~ into the shell prompt from any working directory runs ~SPPARKS~. Try this now.
 
 
-** Input scripts and commands
+** Running ~SPPARKS~ with no input
 \begin{block}{~SPPARKS~ reads commands from ~stdin~}
 \includegraphics[width=\textwidth]{spk} \\
 Press ~Ctrl-C~ to exit.
@@ -97,7 +136,7 @@ Press ~Ctrl-C~ to exit.
 
 [fn:1] [[http://spparks.sandia.gov/]]
 
-[fn:2] Try =Makefile.serial= or =Makefile.mac_serial= if =MPI= is missing or causes problems.
+[fn:2] To make this permanent, append this command to =~/.bashrc= (=~/.bash_profile= on a mac)
 
-[fn:3] To make this permanent, append this command to =~/.bashrc= (=~/.bash_profile= on a mac)
+[fn:3] You'll likely need to supply the location of the =MPI= library files on your system.
 

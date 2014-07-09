@@ -1,5 +1,5 @@
 #+TITLE: SPPARKS for microstructural science
-#+AUTHOR: Brian DeCost and Liz Holm
+#+AUTHOR: Brian DeCost
 #+EMAIL: bdecost@andrew.cmu.edu
 #+DATE: 11 July 2014
 #+OPTIONS: H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t

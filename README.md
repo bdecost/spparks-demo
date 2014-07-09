@@ -15,7 +15,7 @@ If you use Windows, I won't be able to help you with compiling SPPARKS, but you 
 
 If you aren't familiar with using a Unix shell, don't worry: you can (mostly) copy-and-paste all the commands from the slides, so this is your chance to learn :)
 
-Compilation of (the serial version of) SPPARKS will be covered during the demo session, but if you want to be able to run the parallel version of SPPARKS, it's recommended that you [install SPPARKS beforehand]() (configuring SPPARKS with MPI can be tricky).
+Compilation of (the serial version of) SPPARKS will be covered during the demo session, but if you want to be able to run the parallel version of SPPARKS, it's recommended that you [try to install SPPARKS beforehand](http://spparks.sandia.gov/doc/Section_start.html) (configuring SPPARKS with MPI can be tricky).
 
 ### essentials
 - Terminal app

@@ -26,7 +26,9 @@ Compilation of (the serial version of) SPPARKS will be covered during the demo s
 - `MPI` message passing library (suggested: use a package manager such as Macports or Homebrew to install [MPICH](http://www.mpich.org) or [openmpi](http://www.open-mpi.org))
 
 ### required for the visualization demo
+<!--- relevant pizza.py files included in demo/visualization for simplicity...
 - `pizza.py` [pre/post-processing toolkit from SANDIA](http://http://www.sandia.gov/~sjplimp/download.html)
+   -->
 - `ParaView` [visualization software](http://www.paraview.org)
 
 ### optional

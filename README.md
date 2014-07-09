@@ -11,7 +11,7 @@ This includes compiling SPPARKS from the source code, writing and running simula
 software requirements
 ---------------------
 To follow along with all of the interactive demos, you'll need some software and a Unix-like operating system (and a terminal app).
-If you use Windows, you can try using [cygwin](https://www.cygwin.com) (I , or use linux in a VM with [virtualbox](https://www.virtualbox.org).
+If you use Windows, I won't be able to help you with compiling SPPARKS, but you can try using [cygwin](https://www.cygwin.com), or use linux in a VM with [virtualbox](https://www.virtualbox.org).
 
 If you aren't familiar with using a Unix shell, don't worry: you can (mostly) copy-and-paste all the commands from the slides, so this is your chance to learn :)
 
@@ -22,7 +22,7 @@ Compilation of (the serial version of) SPPARKS will be covered during the demo s
 - C++ compiler and GNU build tools (included in the Apple Dev. tools)
 - `SPPARKS` [Kinetic Monte Carlo framework from SANDIA](http://http://www.sandia.gov/~sjplimp/download.html)
 
-### MPI for compiling parallel SPPARKS
+### required for parallel SPPARKS
 - `MPI` message passing library (suggested: use a package manager such as Macports or Homebrew to install [MPICH](http://www.mpich.org) or [openmpi](http://www.open-mpi.org))
 
 ### required for the visualization demo

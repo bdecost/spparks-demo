@@ -15,7 +15,7 @@
 #+latex_header: \setbeamertemplate{blocks}[rounded] 
 #+latex_header: \usepackage{enumitem}
 #+latex_header: \setitemize{itemsep=1ex,leftmargin=1cm,labelindent=\parindent,label=$\triangleright$}
-#+latex_header: \graphicspath{{.images/}}
+#+latex_header: \graphicspath{{images/}}
 #+latex_header: \setbeamerfont{title}{family=\rm}
 #+latex_header: \setbeamerfont{author}{family=\rm}
 #+latex_header: \setbeamerfont{date}{family=\rm}

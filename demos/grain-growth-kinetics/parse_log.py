@@ -47,12 +47,12 @@ except ImportError:
 
 fig, (ax0, ax1) = plt.subplots(1,2,sharey=True)
 ax0.plot(Time, R_av, 'o-')
-ax0.set_xlabel('Time (MCS)')
-ax0.set_ylabel(r'$\langle R \rangle$ (pixels)')
+ax0.set_xlabel('Time (MCS)',fontsize=20)
+ax0.set_ylabel(r'$\langle R \rangle$ (pixels)',fontsize=20)
 
 import math
 sqrtTime = [math.sqrt(t) for t in Time]
 ax1.plot(sqrtTime, R_av, 'o-')
-ax1.set_xlabel(r'Time$^\frac{1}{2}$ (MCS$^\frac{1}{2}$)')
+ax1.set_xlabel(r'Time$^\frac{1}{2}$ (MCS$^\frac{1}{2}$)',fontsize=20)
 
 plt.show()

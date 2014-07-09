@@ -52,7 +52,7 @@
 - Annealing synthetic microstructures to achieve local equilibrium along triple lines
 - Generation of simple synthetic microstructures
 
-** Spatially decomposed parallelization
+# ** Spatially decomposed parallelization
 
 * Getting started with =SPPARKS=
 ** The =SPPARKS= distribution
@@ -131,18 +131,25 @@ Press ~Ctrl-C~ to exit.
 \end{block}
 
 
-* Demo: Running =SPPARKS=
-** =SPPARKS= input scripts
+* Demo: =SPPARKS= input scripts
+** Demo: =SPPARKS= input scripts
 =SPPARKS= is controlled by a script of commands which are executed line-by-line.
 
 \bigskip
 
-\begin{block}{Run the =basic= demo}
+\begin{block}{Run the ~basic~ demo}
 #+BEGIN_SRC shell
 cd ~/Downloads/spparks-demo-master/demos/basic
 spk < basic.spkin
 #+END_SRC
 \end{block}
+
+\bigskip
+
+=SPPARKS= will print some diagnostic information to the screen, and to a log file called ~log.spparks~.
+
+** =SPPARKS= output
+\includegraphics[width=0.9\textwidth]{basic-1}
 
 ** Anatomy of an  input script: =basic.spkin=
 #+BEGIN_SRC shell
@@ -156,14 +163,39 @@ create_box       box
 create_sites     box
 set              site range 1 100
 solve_style      tree
+temperature      0.0
 diag_style       energy
 stats            10.0
 run              100.0
 #+END_SRC
 
 * Demo: Grain growth kinetics
-** Diagnostics
-** Log file
+** Demo: Grain growth kinetics
+\begin{block}{Run the ~grain-growth-kinetics~ demo}
+#+BEGIN_SRC shell
+cd ../grain-growth-kinetics
+spk < potts2d.spkin
+#+END_SRC
+\end{block}
+\bigskip
+This script uses the ~cluster~ diagnostic, which computes grain size information.
+
+** Grain growth kinetics
+This demo includes a ~python~ script which extracts grain growth kinetics from ~log.spparks~ and attempts to plot them.
+\bigskip
+\begin{block}{Run the ~python~ script}
+#+BEGIN_SRC shell
+python parse_log.py log.spparks
+#+END_SRC
+\end{block}
+\bigskip
+
+The script produces a file ~cluster-stats.csv~ that you can open in ~Excel~.
+
+** Grain growth kinetics
+Grain size is linear in ~sqrt~-time!
+\includegraphics[width=\textwidth]{kinetics}
+
 * Demo: Visualization with ParaView
 ** The =dump= command
 Post-processing. =pizza.py= or custom scripts.

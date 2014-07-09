@@ -10,6 +10,7 @@ create_sites	 box
 set		 site range 1 100
 
 solve_style      tree
+temperature	 0.0
 diag_style       energy
 
 stats            10.0

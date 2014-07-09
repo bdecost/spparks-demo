@@ -37,7 +37,7 @@
     - Mesoscale materials phenomena as stochastic processes
     - Scalable to thousands of processors
     - Modular ~C++~ facilitates user-defined models/statistics
-    - Open Source (GPLv3)
+    - Open Source (GPLv2)
     - Related to the ~LAMMPS~ Molecular Dynamics framework
 
 ** What applications is ~SPPARKS~ useful for?
@@ -106,7 +106,7 @@ cd ..
 
 Copy ~Makefile.demo~ into ~src/MAKE/~
 
-\begin{block}{Build the demo version of =SPPARKS=}
+\begin{block}{Build the demo version of ~SPPARKS~}
 #+BEGIN_SRC shell
 make demo
 #+END_SRC
@@ -213,6 +213,14 @@ alias pizza='python -i ~/Software/pizza*/src/pizza.py'
 \bigskip
 
 ** Conversion to =vtk= with =pizza.py=
+** Visualizing grain growth
+\hfill
+\includegraphics[width=0.3\textwidth]{init}
+\hfill
+\includegraphics[width=0.3\textwidth]{mid}
+\hfill
+\includegraphics[width=0.3\textwidth]{end}
+\hfill
 
 * Running =SPPARKS= in parallel
 ** =mpirun=

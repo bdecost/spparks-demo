@@ -21,10 +21,13 @@ Compilation of (the serial version of) SPPARKS will be covered during the demo s
 - Terminal app
 - C++ compiler and GNU build tools (included in the Apple Dev. tools)
 - `SPPARKS` [Kinetic Monte Carlo framework from SANDIA](http://http://www.sandia.gov/~sjplimp/download.html)
+
 ### MPI for compiling parallel SPPARKS
 - `MPI` message passing library (suggested: use a package manager such as Macports or Homebrew to install [MPICH](http://www.mpich.org) or [openmpi](http://www.open-mpi.org))
+
 ### required for the visualization demo
 - `pizza.py` [pre/post-processing toolkit from SANDIA](http://http://www.sandia.gov/~sjplimp/download.html)
 - `ParaView` [visualization software](http://www.paraview.org)
+
 ### optional
 - `matplotlib` (optional) python plotting library. Excel will work too.

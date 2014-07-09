@@ -132,7 +132,19 @@ Press ~Ctrl-C~ to exit.
 
 
 * Demo: Running =SPPARKS=
-** A basic input script: =basic.spkin=
+** =SPPARKS= input scripts
+=SPPARKS= is controlled by a script of commands which are executed line-by-line.
+
+\bigskip
+
+\begin{block}{Run the =basic= demo}
+#+BEGIN_SRC shell
+cd ~/Downloads/spparks-demo-master/demos/basic
+spk < basic.spkin
+#+END_SRC
+\end{block}
+
+** Anatomy of an  input script: =basic.spkin=
 #+BEGIN_SRC shell
 # Minimal SPPARKS Potts script
 seed             56789

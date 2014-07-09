@@ -199,7 +199,7 @@ Grain size is linear in ~sqrt~-time!
 * Demo: Visualization with ParaView
 ** The =dump= command
 Post-processing. =pizza.py= or custom scripts.
-** Installing pizza.py[fn:4]
+# ** Installing pizza.py[fn:4]
 Download and unpack the [[http://www.sandia.gov/~sjplimp/download.html][pizza.py]] archive from =http://www.sandia.gov/~sjplimp/download.html=
 \bigskip
 \begin{block}{Unpack the ~SPPARKS~ source archive}
@@ -213,7 +213,19 @@ alias pizza='python -i ~/Software/pizza*/src/pizza.py'
 \bigskip
 
 ** Conversion to =vtk= with =pizza.py=
-** Visualizing grain growth
+The python script ~pizza_dump2vtk.py~ uses tools from the open source [[http://www.sandia.gov/~sjplimp/download.html][pizza.py]] toolkit to create vtk files from the ~SPPARKS~ many-timestep dump file.
+\bigskip
+\begin{block}{Run ~pizza_dump2vtk.py~}
+#+BEGIN_SRC shell
+python pizza_dump2vtk.py potts.dump
+#+END_SRC
+\end{block}
+
+** Visualizing with ParaView
+Open the vtk files in ParaView to create a movie.
+
+\bigskip
+
 \hfill
 \includegraphics[width=0.3\textwidth]{init}
 \hfill

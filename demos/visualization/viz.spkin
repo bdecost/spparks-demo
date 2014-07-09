@@ -19,6 +19,6 @@ diag_style       energy
 temperature	 1.1
 
 stats            10.0
-dump             1 text 10.0 dump.potts
+dump             1 text 10.0 potts.dump
 
-run              100.0
+run              200.0

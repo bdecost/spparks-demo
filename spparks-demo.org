@@ -57,16 +57,11 @@ Simulations are defined by input scripts composed of [[http://spparks.sandia.gov
    - lattice-based models
    - off-lattice models
    - generic KMC applications
-*** In this session, we'll focus on the Potts model		    :B_block:
-    :PROPERTIES:
-    :BEAMER_env: block
-    :END:
+\begin{block}{In this session, we'll focus on the Potts model}
 - Modeling grain growth, recrystallization, and related phenomena
 - Annealing synthetic microstructures to achieve local equilibrium along triple lines
 - Generation of simple synthetic microstructures
-
-# ** Spatially decomposed parallelization
-
+\end{block}
 
 * Getting started with =SPPARKS=
 ** The =SPPARKS= distribution
@@ -76,8 +71,9 @@ Download [[http://www.sandia.gov/~sjplimp/download.html][SPPARKS]] from =http://
 #+BEGIN_SRC shell
 mkdir -p ~/Software && cd ~/Software
 tar xvzf ~/Downloads/spparks.tar.gz
-cd spparks*/src
-ls ~/Software/spparks*/
+mv spparks-19Nov13 spparks
+cd spparks/src
+ls ~/Software/spparks/
 #+END_SRC
 \end{block}
 \bigskip
@@ -95,21 +91,21 @@ You will likely have to edit ~Makefile.linux~, ~Makefile.g++~, or ~Makefile.mac_
 
 ** Building =SPPARKS=
 
-Try to compile =SPPARKS= by running make with the appropriate build target for your system as an argument.
+Try to compile =SPPARKS= by running make with the appropriate build target for your system as an argument.[fn:5]
 
 \bigskip
-\begin{block}{Building SPPARKS using ~Makefile.mac\_mpi~}
+\begin{block}{Building SPPARKS using ~Makefile.demo~}
 #+BEGIN_SRC shell
-make -j4 mac_mpi
+make demo
 #+END_SRC
 \end{block}
 \bigskip
 
-The result is an executable named ~spk_mac_mpi~ in ~src/~.
+The result is an executable named ~spk_demo~ in ~src/~.
 
 ** Building serial ~SPPARKS~
-The ~JPEG~ library can also cause build problems which are difficult to resolve.
-~Makefile.demo~ will build a serial version of ~SPPARKS~ without the ~JPEG~ library.
+~SPPARKS~ comes with a placeholder ~MPI~ library for building a serial version.
+\bigskip
 \begin{block}{First build the ~MPI~ stubs:}
 #+BEGIN_SRC shell
 cd STUBS
@@ -118,11 +114,9 @@ cd ..
 #+END_SRC
 \end{block}
 
-Copy ~Makefile.demo~ into ~src/MAKE/~
-
-\begin{block}{Build the demo version of ~SPPARKS~}
+\begin{block}{Build the ~demo\_serial~ version of ~SPPARKS~}
 #+BEGIN_SRC shell
-make demo
+make demo_serial
 #+END_SRC
 \end{block}
 
@@ -130,7 +124,7 @@ make demo
 \begin{block}
 {To avoid copying the ~SPPARKS~ executable or typing the full path to it repeatedly, define a \emph{shell alias}:}
 #+BEGIN_SRC shell
-alias spk='~/Software/spparks*/src/spk_demo'
+alias spk=~/Software/spparks/src/spk_demo_serial
 #+END_SRC
 \end{block}
 
@@ -261,4 +255,6 @@ Open the vtk files in ParaView to create a movie.
 [fn:3] You'll likely need to supply the location of the =MPI= library files on your system.
 
 [fn:4] As with =SPPARKS=, append the =alias= command to =~/.bashrc= or =~/.bash_profile= to make this "installation" persistent.
+
+[fn:5] To use the demo makefiles, first copy =Makefile.demo= and =Makefile.demo_serial= are in the =SPPARKS= =src/MAKE= directory.
 

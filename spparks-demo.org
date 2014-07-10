@@ -25,7 +25,8 @@
 #+BEAMER_HEADER_EXTRA: \title[SPPARKS]{SPPARKS for microstructural science}
 #+BEAMER_HEADER_EXTRA: \author[]{Brian DeCost}
 #+latex_header: \newcommand{\e}[1]{\textcolor{Periwinkle}{#1}}
-
+#+latex_header: \definecolor{links}{HTML}{2A1B81}
+#+latex_header: \hypersetup{colorlinks,linkcolor=,urlcolor=links}
 
 * Introduction to =SPPARKS=
 \setbeamertemplate{background canvas}[default] 
@@ -40,6 +41,18 @@
     - Open Source (GPLv2)
     - Related to the ~LAMMPS~ Molecular Dynamics framework
 
+** How =SPPARKS= is used
+~SPPARKS~ is a command-line application.
+Simulations are defined by input scripts composed of [[http://spparks.sandia.gov/doc/Section_commands.html#comm][SPPARKS commands]]
+
+\bigskip
+
+\begin{block}{The most important commands are:}
+- app\_style
+- ~solve\_style~ / sweep\_style
+- diag\_style
+\end{block}
+
 ** What applications is ~SPPARKS~ useful for?
    - lattice-based models
    - off-lattice models
@@ -53,6 +66,7 @@
 - Generation of simple synthetic microstructures
 
 # ** Spatially decomposed parallelization
+
 
 * Getting started with =SPPARKS=
 ** The =SPPARKS= distribution

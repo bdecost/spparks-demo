@@ -54,14 +54,28 @@ Simulations are defined by input scripts composed of [[http://spparks.sandia.gov
 \end{block}
 
 ** What applications is ~SPPARKS~ useful for?
-   - lattice-based models
-   - off-lattice models
-   - generic KMC applications
-\begin{block}{In this session, we'll focus on the Potts model}
+\begin{block}{lattice-based models}
+- Ising model
+- Potts model and variants (pin, strain, \emph{aniso})
+- Vacancy diffusion models (surface and bulk)
+\end{block}
+
+\begin{block}{off-lattice models}
+- Atomic relaxation 
+\end{block}
+
+\begin{block}{generic KMC applications}
+- biochemical reaction network
+\end{block}
+
+** In this session, we'll focus on the Potts model
 - Modeling grain growth, recrystallization, and related phenomena
 - Annealing synthetic microstructures to achieve local equilibrium along triple lines
 - Generation of simple synthetic microstructures
-\end{block}
+
+** Modeling abnormal grain growth with ~SPPARKS~
+\vspace{-4cm}
+Variable grain boundary mobility: imaginary red/blue texture components
 
 * Getting started with =SPPARKS=
 ** The =SPPARKS= distribution
@@ -201,25 +215,22 @@ python parse_log.py log.spparks
 The script produces a file ~cluster-stats.csv~ that you can open in ~Excel~.
 
 ** Grain growth kinetics
-Grain size is linear in ~sqrt~-time!
+Grain size (after an initial transient) is linear in ~sqrt~-time!
 \includegraphics[width=\textwidth]{kinetics}
 
 * Demo: Visualization with ParaView
-** The =dump= command
-Post-processing. =pizza.py= or custom scripts.
-# ** Installing pizza.py[fn:4]
-# Download and unpack the [[http://www.sandia.gov/~sjplimp/download.html][pizza.py]] archive from =http://www.sandia.gov/~sjplimp/download.html=
-# \bigskip
-# \begin{block}{Unpack the ~SPPARKS~ source archive}
-# #+BEGIN_SRC shell
-# mkdir -p ~/Software && cd ~/Software
-# tar xvzf ~/Downloads/pizza.tar.gz
-# cd -
-# alias pizza='python -i ~/Software/pizza*/src/pizza.py'
-# #+END_SRC
-# \end{block}
-# \bigskip
-
+** Visualization: the =dump= command
+\begin{block}{Run the ~visualization~ demo}
+#+BEGIN_SRC shell
+cd ../visualization
+spk < viz.spkin
+#+END_SRC
+\end{block}
+\bigskip
+\begin{block}{~SPPARKS~ has a similar data dump format to ~LAMMPS~}
+dump 1.0 text potts.dump
+\end{block}
+These need to be post-processed =pizza.py= or custom scripts.[fn:6]
 ** Conversion to =vtk= with =pizza.py=
 The python script =pizza_dump2vtk.py= uses tools from the open source [[http://www.sandia.gov/~sjplimp/download.html][pizza.py]] toolkit to create vtk files from the ~SPPARKS~ many-timestep dump file.
 \bigskip
@@ -228,6 +239,10 @@ The python script =pizza_dump2vtk.py= uses tools from the open source [[http://w
 python pizza_dump2vtk.py potts.dump
 #+END_SRC
 \end{block}
+
+\bigskip
+
+The ~viz3D.spkin~ script will make a 3D grain growth dataset if you're willing to wait for it.
 
 ** Visualizing with ParaView
 Open the vtk files in ParaView to create a movie.
@@ -244,7 +259,20 @@ Open the vtk files in ParaView to create a movie.
 
 * Running =SPPARKS= in parallel
 ** =mpirun=
-** Processor partitions
+Due to the way ~SPPARKS~ is parallelized, parallelized simulations must use the ~sector~ command.
+\bigskip
+\begin{block}{Run ~SPPARKS~ with ~mpirun~}
+mpirun -np 4 spk < viz3D.spkin
+\end{block}
+
+** Parallel =KMC= is an approximation
+\begin{overprint}
+\onslide<1>
+\vspace{-0.8cm}
+\includegraphics[width=\textwidth]{splinch}
+\onslide<2>
+\includegraphics[width=\textwidth]{splinch-zoom-1}
+\end{overprint}
 
 * Footnotes
 
@@ -257,4 +285,6 @@ Open the vtk files in ParaView to create a movie.
 [fn:4] As with =SPPARKS=, append the =alias= command to =~/.bashrc= or =~/.bash_profile= to make this "installation" persistent.
 
 [fn:5] To use the demo makefiles, first copy =Makefile.demo= and =Makefile.demo_serial= are in the =SPPARKS= =src/MAKE= directory.
+
+[fn:6] pizza.py is a post-processing toolkit for LAMMPS [[http://pizza.sandia.gov/]]
 

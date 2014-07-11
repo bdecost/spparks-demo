@@ -6,7 +6,7 @@ app_style	 potts 2048
 
 dimension	 2
 lattice		 sc/26n 1.0
-region		 box block 0 256 0 256 0 256
+region		 box block 0 128 0 128 0 128
 create_box	 box
 create_sites	 box
 set		 site range 1 2048
